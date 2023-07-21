@@ -9,7 +9,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 $query = $mysqli->prepare(
-    'select user_firstname,
+    'select user_id, user_firstname,
     user_lastname,
     user_email,
     user_phone,
@@ -24,7 +24,7 @@ $query = $mysqli->prepare(
 $query->bind_param('s', $email);
 $query->execute();
 $query->store_result();
-$query->bind_result($user_firstname,$user_lastname,$user_email,$user_phone,
+$query->bind_result($user_id,$user_firstname,$user_lastname,$user_email,$user_phone,
 $hashed_password, $user_birthdate, $user_gender,$user_image);
 $query->fetch();
 
@@ -34,6 +34,7 @@ if ($num_rows == 0) {
 } else {
     if (password_verify($password, $hashed_password)) {
         $response['status'] = 'logged in';
+        $response['user_id'] = $user_id;
         $response['firstname'] = $user_firstname;
         $response['lastname'] = $user_lastname;
         $response['email'] = $user_email;
