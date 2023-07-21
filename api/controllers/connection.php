@@ -6,7 +6,7 @@ header('Access-Control-Max-Age: 3600');
 $host="localhost";
 $db_user="root";
 $db_pass=null;
-$db_name="bootstrap-fetch";
+$db_name="google-clone_db";
 
 $mysqli = new mysqli($host,$db_user,$db_pass,$db_name);
 if(!$mysqli){
