@@ -6,7 +6,7 @@ include('connection.php');
 // $data = json_decode(file_get_contents('php://input'), true);
 
 $email = $_POST['email'];
-$password = $_POST['password'];
+
 
 function isValidEmail($email) {
     $pattern = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
@@ -16,17 +16,6 @@ function isValidEmail($email) {
     } else {
         return false;
     }
-}
-
-function isValidPassword($password){
-    $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_@#$%^&*!])[A-Za-z\d\-_@#$%^&*!]{8,}$/';
-
-    if (preg_match($pattern, $password)) {
-        return true;
-    } else {
-        return false;
-    }
-
 }
 
 if (isValidEmail($email)) {
@@ -39,14 +28,7 @@ if (isValidEmail($email)) {
     $email_exists = $check_email->num_rows();
 
     if($email_exists == 0){
-        $response['status'] = "Sign up successful";
-
-
-        if(isValidPassword($password)){
-            $response['status'] = "Sign up successful";
-        }else{
-            $response['status'] = "Invalid Password";
-        }
+        $response['status'] = "Email Valid";
 
     }else{
         $response['status'] = "Email already exists";
