@@ -122,6 +122,7 @@ function signUpForm(step) {
     </div>
     <div class="flex justify-between items-center btn">
       <a href="#" class="cancel">cancel</a>
+    </div>
     `;
   }
 }

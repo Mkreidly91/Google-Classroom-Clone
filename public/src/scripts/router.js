@@ -23,12 +23,12 @@ pages.load_page = async (page) => {
 
           if (!nameRegex.test(first_name.value)) {
             first_name.nextElementSibling.innerHTML =
-              'Please insert your real name';
+              'Please provide a valid name';
             return;
           } else if (!nameRegex.test(last_name.value)) {
             first_name.nextElementSibling.innerHTML = '';
             last_name.nextElementSibling.innerHTML =
-              'Please insert your real surname';
+              'Please provide a valid last name';
             return;
           } else {
             user.firstname = first_name.value;
@@ -126,7 +126,6 @@ pages.load_page = async (page) => {
             }
           }
         }
-
         if (step === 4) {
           const toadd = {
             email: user.email,
@@ -137,7 +136,6 @@ pages.load_page = async (page) => {
             password: user.password,
             birthdate: user.birthdate,
           };
-
           const res = await fetch(`${pages.base_url}/signUp.php`, {
             headers: {
               'Content-Type': 'application/json',
