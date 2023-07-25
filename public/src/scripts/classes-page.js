@@ -27,6 +27,7 @@ window.addEventListener('load', async () => {
     const classname = classes[i].class_name;
     const class_section = classes[i].class_section;
     const class_subject = classes[i].class_subject;
+    
 
     console.log('Class Name:', classname);
     console.log('Class Section:', class_section);
