@@ -1,14 +1,15 @@
-window.addEventListener("load", async () => {
+window.addEventListener('load', async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const class_id = urlParams.get("class_id");
+  const class_id = urlParams.get('class_id');
+  navbar('people');
   sideBar({});
 
   const res = await fetch(
-    "http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getteachers.php",
+    'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getteachers.php',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ class_id }),
     }
@@ -16,11 +17,11 @@ window.addEventListener("load", async () => {
   const teachers = await res.json();
 
   const res_students = await fetch(
-    "http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getstudents.php",
+    'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getstudents.php',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ class_id }),
     }
@@ -29,13 +30,13 @@ window.addEventListener("load", async () => {
 
   displayUser(students, teachers);
 
-  const streambtn = document.getElementById("stream");
-  const classworkbtn = document.getElementById("classwork");
+  const streambtn = document.getElementById('stream');
+  const classworkbtn = document.getElementById('classwork');
 
-  streambtn.addEventListener("click", () => {
+  streambtn.addEventListener('click', () => {
     window.location.href = `class.html?class_id=${class_id}`;
   });
-  classworkbtn.addEventListener("click", () => {
+  classworkbtn.addEventListener('click', () => {
     window.location.href = `classwork.html?class_id=${class_id}`;
   });
 });
