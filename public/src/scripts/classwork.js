@@ -1,4 +1,33 @@
-const role = "teacher";
+// const role = "teacher";
+
+window.addEventListener("load", async () => {
+	const urlParams = new URLSearchParams(window.location.search);
+	const class_id = urlParams.get("class_id");
+	const user_id = localStorage.getItem("user_id");
+  console.log(user_id)
+  console.log(class_id)
+	const user = {
+		user_id,
+		class_id,
+	};
+
+	// getting role of user in this class
+	const roleresponse = await fetch(
+		"http://localhost/google-clone/Google-Classroom-Clone/api/controllers/role.php",
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(user),
+		}
+	);
+
+	const role = await roleresponse.json();
+  console.log(role)
+  modifyPersonalLinkDiv(role);
+
+})
 
 function displayAssignment(assignments) {
   const assignmentsList = document.getElementById('assignments-container');
@@ -134,8 +163,8 @@ window.addEventListener('load', async () => {
   });
 });
 
-function modifyPersonalLinkDiv(){
-  console.log("modify")
+function modifyPersonalLinkDiv(role){
+  
   const PL = document.getElementById("personal-link");
   if (role == "teacher"){
     PL.innerHTML = '<div class="add-assignment flex justify-start gap-9" id="add-assignment"><label for="add-assignment-btn" class="add-assignment-btn-label" id="add-assignment-btn-label">Assign</label><button class="add-assignment-btn" id="add-assignment-btn"></button> </div>'
@@ -143,7 +172,7 @@ function modifyPersonalLinkDiv(){
     const class_id = urlParams.get('class_id');
     const addAssign = document.getElementById("add-assignment-btn-label");
     addAssign.addEventListener('click',() => {
-      window.location.href = `createassign.html?class_id=${class_id}`;
+      window.location.href = `createAssignment.html?class_id=${class_id}`;
     })
   }
   else{
@@ -151,6 +180,27 @@ function modifyPersonalLinkDiv(){
   }
 }
 
-window.onload = function () {
-  modifyPersonalLinkDiv();
-  }
+// window.onload = function () {
+//   modifyPersonalLinkDiv();
+//   }
+
+// window.addEventListener('load', async()=>{
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const class_id = urlParams.get('class_id')
+// })
+
+// async function getRole(user_id,class_id){
+//   const user_id = localStorage.getItem("user_id");
+//   const class_id = localStorage.getItem("class_id");
+//   const response = await fetch(
+//     'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/role.php',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({user_id, class_id}),
+//     }
+//   );
+//   const role = await response.json();
+// }

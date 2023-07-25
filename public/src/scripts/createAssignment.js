@@ -2,6 +2,8 @@ window.onload = async function () {
     const currentDate = new Date();
     const dueDateInput = document.getElementById('due-date');
     const formattedCurrentDate = currentDate.toISOString().slice(0, 10); // Format the current date as YYYY-MM-DD
+    const user_id = localStorage.getItem('user_id')
+    console.log(user_id)
     dueDateInput.setAttribute('min', formattedCurrentDate);
     const fetchClasses = await fetch('http://localhost/google-clone/Google-Classroom-Clone/api/controllers/myclasses.php', {
         method: 'POST',
@@ -9,7 +11,7 @@ window.onload = async function () {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(
-            {user_id: 15} // insert user id here: const user_id = localStorage.getItem('user_id'); change below as well
+            {user_id} // insert user id here: const user_id = localStorage.getItem('user_id'); change below as well
         )
     })
     const classes = await fetchClasses.json();
@@ -17,6 +19,8 @@ window.onload = async function () {
 
     addClassesToClassAssignDiv(classes);
 };
+
+
 
 async function handleAssignButton() {
     const assignment_name = document.getElementById('assignment-title').value;
@@ -55,7 +59,7 @@ async function handleAssignButton() {
         class_id,
         assignment_date,
         assignment_duedate,
-        teacher_id: 15,
+        user_id,
         // attachments,
     };
 
