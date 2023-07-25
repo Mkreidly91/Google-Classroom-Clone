@@ -1,6 +1,5 @@
 function navbar(page) {
   const class_id = localStorage.getItem('class_id');
-  console.log(page);
   const header = document.getElementById('header');
   const nav = `
         <nav class="flex items-center ">
@@ -30,15 +29,15 @@ function navbar(page) {
                 <div class="flex items-center grow justify-center gap-20">
                         <div class="tab ${
                           page === 'stream' ? `active` : ``
-                        } id="stream"><a href="class.html?${class_id}">Stream</a>
+                        } id="stream"><a href="class.html?class_id=${class_id}">Stream</a>
                         </div>
                         <div class="tab ${
                           page === 'classwork' ? `active` : ``
-                        }" id="classwork"><a href="classwork.html?${class_id}">Classwork</a>
+                        }" id="classwork"><a href="classwork.html?class_id=${class_id}">Classwork</a>
                         </div>
                         <div class="tab ${
                           page === 'people' ? `active` : ``
-                        }" id="people"><a href="people.html?${class_id}">People</a>
+                        }" id="people"><a href="people.html?class_id=${class_id}">People</a>
                         </div>
                 </div>
                     
