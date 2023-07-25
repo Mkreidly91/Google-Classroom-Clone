@@ -9,49 +9,41 @@ function getCurrentDate() {
 
   return currentDate;
 }
-const create_files=document.getElementById("add");
-const info_input=document.getElementById("inputs");
-const turn_files=document.getElementById("done");
-const link=document.getElementById("url-link");
-create_files.addEventListener('click',()=>{
-  info_input.classList.toggle("inputs");
+const create_files = document.getElementById('add');
+const info_input = document.getElementById('inputs');
+const turn_files = document.getElementById('done');
+const link = document.getElementById('url-link');
+create_files.addEventListener('click', () => {
+  info_input.classList.toggle('inputs');
 });
 
-turn_files.addEventListener('click',async()=>{
-  
-  const url={
+turn_files.addEventListener('click', async () => {
+  const url = {
     link,
-    date:getCurrentDate()
+    date: getCurrentDate(),
   };
   try {
-    
-    const roleresponse = await fetch(
-      '',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(url),
-      }
-    );
-  
+    const roleresponse = await fetch('', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(url),
+    });
+
     const role = await roleresponse.json();
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-})
-
-
+});
 
 // dynamically display assignment details
 
-
-window.addEventListener("load",async()=>{
+window.addEventListener('load', async () => {
+  navbar('assignment');
 
   const urlParams = new URLSearchParams(window.location.search);
-  const assignment_id = urlParams.get("assignment_id");
-  
+  const assignment_id = urlParams.get('assignment_id');
 
   const formData = new FormData();
   formData.append('assignment_id', assignment_id);
@@ -65,13 +57,18 @@ window.addEventListener("load",async()=>{
   );
 
   const assignment = await response.json();
-  
-  document.getElementById("assignment-title").innerText= assignment.assignment_name
-  document.getElementById("teacher-date").innerText=`${assignment.user_firstname} ${assignment.user_lastname} • ${assignment.assignment_date}`
-  document.getElementById("grade").innerText= `Points: ${assignment.assignment_points}`
-  document.getElementById("duedate").innerText= `Due: ${assignment.assignment_duedate}`
-  document.getElementById("assignment_paragraph").innerText= assignment.assignment_paragraph
 
-
-})
-
+  document.getElementById('assignment-title').innerText =
+    assignment.assignment_name;
+  document.getElementById(
+    'teacher-date'
+  ).innerText = `${assignment.user_firstname} ${assignment.user_lastname} • ${assignment.assignment_date}`;
+  document.getElementById(
+    'grade'
+  ).innerText = `Points: ${assignment.assignment_points}`;
+  document.getElementById(
+    'duedate'
+  ).innerText = `Due: ${assignment.assignment_duedate}`;
+  document.getElementById('assignment_paragraph').innerText =
+    assignment.assignment_paragraph;
+});

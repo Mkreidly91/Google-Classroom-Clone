@@ -1,89 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="src/styles/utility.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles/utility.css" />
     <link rel="stylesheet" href="src/styles/assignment.css" />
-  <title>turn-in</title>
-</head>
-<body>
-  <nav class="flex items-center">
-     <div class="flex items-center padding-left-lg grow">
-        <div>
-          <a href="#!">
-            <img src="src/assets/images/icons/menu.svg" alt="">
-          </a>
-        </div>
-        <div class="left-part flex items-center">
-          <p>FSW 23& 24 | Tech<br><span class="section">Full Stack Web Development Bootcamp</span></p>
-        </div>
+    <title>turn-in</title>
+  </head>
+  <body>
+    <header id="header"></header>
+    <div class="flex page-container items-start gap-20">
+      <div class="assignment-icon flex items-center justify-center">
+        <img src="src/assets/images/icons/assignment-white.svg" alt="" />
       </div>
-      <div class="right-part flex items-center">
-        <div class="apps-account flex items-center">
-          <div class="apps">
-            <a href="#!">
-              <img src="src/assets/images/icons/apps.svg" alt="">
-            </a>
+      <div class="flex flex-col assignment-info gap-20">
+        <div class="assignment-hero">
+          <div class="flex flex-col gap-9">
+            <h1 class="assignment-title" id="assignment-title">
+              Google Classroom Clone
+            </h1>
+            <p class="assignment-teacher-date" id="teacher-date">
+              Julien Hosri • Jul 11 (Edited Jul 11)
+            </p>
           </div>
-          <div class="account">
-            <a href="#!">
-              <img class="br-50" src="src/assets/images/defaults/default-user.png" alt="">
-            </a>
+          <div class="flex justify-between date-grade">
+            <div class="grade" id="grade">100 points</div>
+            <div class="date" id="duedate">Due Jul 11, 11:59 PM</div>
           </div>
         </div>
-      </div>
-    </nav>
-    <hr class="nav-hr" />
-  <div class="flex page-container items-start gap-20">
-    <div class="assignment-icon flex items-center justify-center">
-      <img src="src/assets/images/icons/assignment-white.svg" alt="">
-    </div>
-    <div class="flex flex-col assignment-info gap-20">
-      <div class="assignment-hero">
-        <div class="flex flex-col gap-9">
-          <h1 class="assignment-title" id="assignment-title">Google Classroom Clone</h1>
-          <p class="assignment-teacher-date" id="teacher-date">Julien Hosri • Jul 11 (Edited Jul 11)</p>
-        </div>  
-        <div class="flex justify-between date-grade">
-          <div class="grade" id="grade">100 points</div>
-          <div class="date" id="duedate">Due Jul 11, 11:59 PM</div>
-        </div>
-      </div>
         <div class="flex flex-col gap-20 info">
-          <p id="assignment_paragraph">
-          </p>
-          
-    
+          <p id="assignment_paragraph"></p>
         </div>
-        <hr class="comments-hr">
+        <hr class="comments-hr" />
         <div class="class-comment-container">
           <div>Class comments</div>
-          <input placeholder="Add class comment..." class="class-comment">
+          <input placeholder="Add class comment..." class="class-comment" />
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-col turnin-comment-boxes gap-10">
-      <div class="flex flex-col status-turnin-assignment gap-9">
-        <div class="flex justify-between">
-          <div>Your work</div>
-          <div class="assignment-status" id="assignment-status">Assigned</div>
-        </div>
-        
+      <div class="flex flex-col turnin-comment-boxes gap-10">
+        <div class="flex flex-col status-turnin-assignment gap-9">
+          <div class="flex justify-between">
+            <div>Your work</div>
+            <div class="assignment-status" id="assignment-status">Assigned</div>
+          </div>
+
           <button class="add" id="add">+ Add or create</button>
           <div class="inputs" id="inputs">
-            <input type="url" placeholder="Enter a link" id="url-link">
-            <input type="file" name="submission_attachment" id="submission_attachment">
+            <input type="url" placeholder="Enter a link" id="url-link" />
+            <input
+              type="file"
+              name="submission_attachment"
+              id="submission_attachment"
+            />
           </div>
-      
-        <button class="done" id="done">Mark as done</button>
+
+          <button class="done" id="done">Mark as done</button>
+        </div>
+        <div class="flex flex-col private-comment gap-9">
+          <div>Private comments</div>
+          <input placeholder="Add private comment" class="p-comment" />
+        </div>
       </div>
-      <div class="flex flex-col private-comment gap-9">
-        <div> Private comments</div>
-        <input placeholder="Add private comment" class="p-comment">
-      </div> 
     </div>
-  </div>
-  <script src="src/scripts/assignment.js"></script>
-</body>
+    <script src="src/components/navbar.js"></script>
+    <script src="src/scripts/assignment.js"></script>
+  </body>
 </html>

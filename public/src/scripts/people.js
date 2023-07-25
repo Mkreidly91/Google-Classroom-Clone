@@ -1,38 +1,38 @@
-window.addEventListener("load", async () => {
+window.addEventListener('load', async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const class_id = urlParams.get("class_id");
-  const user_id = localStorage.getItem("user_id")
-
+  const class_id = urlParams.get('class_id');
+  navbar('people');
+  const user_id = localStorage.getItem('user_id');
 
   sideBar({});
-  
+
   const user = {
     class_id,
-    user_id
-  }
+    user_id,
+  };
   const user_role = await fetch(
-    "http://localhost/google-clone/Google-Classroom-Clone/api/controllers/role.php",
+    'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/role.php',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(user),
     }
   );
+  console.log(user_role);
   const role = await user_role.json();
-  
-  if(role.role === "teacher" || role.role === "Teacher"){
-    document.getElementById("invite").style.display = "block";
+
+  if (role.role === 'teacher' || role.role === 'Teacher') {
+    document.getElementById('invite').style.display = 'block';
   }
-  
 
   const res = await fetch(
-    "http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getteachers.php",
+    'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getteachers.php',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ class_id }),
     }
@@ -40,11 +40,11 @@ window.addEventListener("load", async () => {
   const teachers = await res.json();
 
   const res_students = await fetch(
-    "http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getstudents.php",
+    'http://localhost/google-clone/Google-Classroom-Clone/api/controllers/getstudents.php',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ class_id }),
     }
@@ -53,22 +53,19 @@ window.addEventListener("load", async () => {
 
   displayUser(students, teachers);
 
-  const streambtn = document.getElementById("stream");
-  const classworkbtn = document.getElementById("classwork");
+  const streambtn = document.getElementById('stream');
+  const classworkbtn = document.getElementById('classwork');
 
-  streambtn.addEventListener("click", () => {
+  streambtn.addEventListener('click', () => {
     window.location.href = `class.html?class_id=${class_id}`;
   });
-  classworkbtn.addEventListener("click", () => {
+  classworkbtn.addEventListener('click', () => {
     window.location.href = `classwork.html?class_id=${class_id}`;
   });
 
+  const inviteBtn = document.getElementById('invite');
 
-  const inviteBtn = document.getElementById("invite");
-
-  inviteBtn.addEventListener("click", () => {
+  inviteBtn.addEventListener('click', () => {
     window.location.href = `invite.html?class_id=${class_id}`;
   });
-
-
 });
