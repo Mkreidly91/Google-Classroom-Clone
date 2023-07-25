@@ -83,15 +83,11 @@ pages.load_page = async (page) => {
               method: 'POST',
               body: JSON.stringify({ recoveryEmail: user.email }),
             });
-            console.log("hi")
-            const json = await res.json();
-            
-            console.log("hi")
 
-            console.log(json.status);
+            const json = await res.json();
+
             if (json.status === 'Email already exists') {
-              gmail.nextElementSibling.innerHTML =
-                'Email already has an account';
+              gmail.nextElementSibling.innerHTML = 'Email already exists';
               return;
             } else if (json.status === 'Wrong email format') {
               gmail.nextElementSibling.innerHTML = 'Invalid email format';
@@ -103,7 +99,7 @@ pages.load_page = async (page) => {
           const password2 = document.getElementById('password2');
 
           if (password.value !== password2.value) {
-            password2.nextElementSibling.innerHTML = 'Unmatching passwords';
+            password2.nextElementSibling.innerHTML = 'Passwords do not match';
             return;
           } else {
             const password_regex =
@@ -111,19 +107,11 @@ pages.load_page = async (page) => {
 
             if (!password_regex.test(password.value)) {
               password2.nextElementSibling.innerHTML =
-                'Password should be 8 characters long, and contains atleast 1 capital, 1 small, 1 digit and 1 special character';
+                'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character';
               return;
             } else {
               user.password = password.value;
-              console.log(
-                user.email,
-                user.firstname,
-                user.lastname,
-                user.phone,
-                user.gender,
-                user.password,
-                user.birthdate
-              );
+
               const res = await fetch(
                 `${pages.base_url}/validatePassword.php`,
                 {
@@ -140,15 +128,6 @@ pages.load_page = async (page) => {
         }
 
         if (step === 4) {
-          console.log(
-            user.email,
-            user.firstname,
-            user.lastname,
-            user.phone,
-            user.gender,
-            user.password,
-            user.birthdate
-          );
           const toadd = {
             email: user.email,
             firstname: user.firstname,
@@ -158,7 +137,7 @@ pages.load_page = async (page) => {
             password: user.password,
             birthdate: user.birthdate,
           };
-          console.log(JSON.stringify(toadd));
+
           const res = await fetch(`${pages.base_url}/signUp.php`, {
             headers: {
               'Content-Type': 'application/json',
@@ -169,8 +148,6 @@ pages.load_page = async (page) => {
           const json = await res.json();
 
           window.location.href = 'signin.html';
-
-          console.log(json.status);
         }
         step++;
         content.innerHTML = signUpForm(step);

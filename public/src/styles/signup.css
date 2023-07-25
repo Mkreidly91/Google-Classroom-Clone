@@ -5,9 +5,9 @@ body {
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
-  padding-top: 2rem;
+  justify-content: center;
   align-items: center;
 }
 
@@ -103,4 +103,9 @@ body {
   font-size: 1rem;
   letter-spacing: 0.0107142857em;
   font-weight: 500;
+}
+.error {
+  color: red;
+  font-size: small;
+  margin-top: -10px;
 }
