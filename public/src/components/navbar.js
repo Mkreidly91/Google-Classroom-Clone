@@ -29,15 +29,15 @@ function navbar(page) {
                 <div class="flex items-center grow justify-center gap-20">
                         <div class="tab ${
                           page === 'stream' ? `active` : ``
-                        } id="stream">Stream
+                        } id="stream"><a href="class.html">Stream</a>
                         </div>
                         <div class="tab ${
                           page === 'classwork' ? `active` : ``
-                        }" id="classwork">Classwork
+                        }" id="classwork"><a href="classwork.html">Classwork</a>
                         </div>
                         <div class="tab ${
                           page === 'people' ? `active` : ``
-                        }" id="people">People
+                        }" id="people"><a href="people.html">People</a>
                         </div>
                 </div>
                     
@@ -78,4 +78,7 @@ function navbar(page) {
              `;
 
   header.innerHTML = nav;
+  const classwork = document.getElementById('classwork');
+  const stream = document.getElementById('stream');
+  const people = document.getElementById('people');
 }

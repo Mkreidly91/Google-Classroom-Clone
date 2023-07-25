@@ -240,3 +240,8 @@ nav {
   -webkit-box-shadow: 3px -1px 9px -3px rgba(0, 0, 0, 0.82);
   -moz-box-shadow: 3px -1px 9px -3px rgba(0, 0, 0, 0.82);
 }
+
+a {
+  color: inherit;
+  text-decoration: inherit; /* no underline */
+}
